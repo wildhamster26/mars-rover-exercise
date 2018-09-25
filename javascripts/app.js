@@ -81,9 +81,9 @@ var rover = {
       case "N":
         //LIMIT NORTH MOVEMENT TO THE GRID
         if(this.positionY < 10) {
+          grid[this.positionY][this.positionX] = "";
           this.positionY += 1;
-          grid[0][1] = this;
-          grid[0][0] = "";
+          grid[this.positionY][this.positionX] = this;
           console.log("Completed a move to the North.");
         } else 
             console.log("Danger! Cliff ahead! Can't move any further.");
@@ -91,7 +91,9 @@ var rover = {
       case "S":
         //LIMIT SOUTH MOVEMENT TO THE GRID
         if(this.positionY > 0) {
+          grid[this.positionY][this.positionX] = "";
           this.positionY -= 1;
+          grid[this.positionY][this.positionX] = this;
           console.log("Completed a move to the South.");
         } else 
            console.log("Danger! Cliff ahead! Can't move any further.");
@@ -99,7 +101,9 @@ var rover = {
       case "E":
       //LIMIT EAST MOVEMENT TO THE GRID
         if(this.positionX < 10) {
+          grid[this.positionY][this.positionX] = "";
           this.positionX += 1;
+          grid[this.positionY][this.positionX] = this;
           console.log("Completed a move to the East.");
         } else
            console.log("Danger! Cliff ahead! Can't move any further.");
@@ -107,7 +111,9 @@ var rover = {
       case "W":
       //LIMIT WEST MOVEMENT TO THE GRID
         if(this.positionX > 0) {
-          this.positionX -= 1; 
+          grid[this.positionY][this.positionX] = "";
+          this.positionX -= 1;
+          grid[this.positionY][this.positionX] = this;
           console.log("Completed a move to the West.");
         } else
             console.log("Danger! Cliff ahead! Can't move any further.");
@@ -179,16 +185,46 @@ var rover = {
         return rover.status();
       }
     }
+  },
+  
+  probe: function probe(rover) {
+    if (this.currentDirection === "N") {
+      console.log(grid[this.positionY+1][this.positionX]);
+    } else if (this.currentDirection === "S") {
+      console.log(grid[this.positionY-1][this.positionX]);
+    } else if (this.currentDirection === "E") {
+      console.log(grid[this.positionY][this.positionX+1]);
+    } else if (this.currentDirection === "W") {
+      console.log(grid[this.positionY][this.positionX-1]);
+    } else 
+    console.log("Something went wrong. Where are we probing at...?")
+  },
+  
+  probeReport: function probeReport(rover) {
+    if(this.probe() === "") {
+      console.log("All clear ahead. Rover can proceed.");
+    } else {
+      console.log("Rover can't proceed. Road blocked.")
+    }
   }
 }
 
 rover.status();
+rover.probeReport();
 
+
+//========================
+//       GRID-MAP. 
+//   !!!IMPORTANT!!! 
+//NOTE THAT THE MAP IS *MIRRORED* SOUTH! 
+//THAT IS, ON SCREEN IT WILL APPEAR AS SO: 
+//UP IS SOUTH AND DOWN IS NORTH, BUT RIGHT IS STILL EAST AND LEFT IS STILL WEST.
+//========================
 let grid = [
   [rover,"","","","","","","","","O"],
-  ["","","","","","O","","","",""],
+  ["","O","","","","O","","","",""],
   ["","","","","","","","","",""],
-  ["","","","","","","","","",""],
+  ["O","","","","","","","","",""],
   ["","","","","O","","","","",""],
   ["","","","","","","","","",""],
   ["","","","","","","","","",""],
