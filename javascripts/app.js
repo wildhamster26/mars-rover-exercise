@@ -1,3 +1,23 @@
+//========================
+//       GRID-MAP. 
+//   !!!IMPORTANT!!! 
+//NOTE THAT THE MAP IS *MIRRORED* SOUTH! 
+//THAT IS, ON SCREEN IT WILL APPEAR AS SO: 
+//UP IS SOUTH AND DOWN IS NORTH, BUT RIGHT IS STILL EAST AND LEFT IS STILL WEST.
+//========================
+let grid = [
+  [rover,"","","","","","","","","O"],
+  ["","O","","","","O","","","",""],
+  ["","","","","","","","","",""],
+  ["O","","","","","","","","",""],
+  ["","","","","O","","","","",""],
+  ["","","","","","","","","",""],
+  ["","","","","","","","","",""],
+  ["","","","","","","","","",""],
+  ["","O","O","","","","","","",""],
+  ["","","","","","","","","",""]
+]
+
 //===================================================
 // ROVER OBJECT - EXPLORATION, MOVING ON A 10x10 GRID
 //===================================================
@@ -12,7 +32,7 @@ var rover = {
   //TRAVEL LOG
   //================
   travelLog: [],
-  log: function log(rover) {
+  log: function log(rover){
     console.log(this.travelLog);
   },
   //================
@@ -212,23 +232,3 @@ var rover = {
 rover.status();
 rover.probeReport();
 
-
-//========================
-//       GRID-MAP. 
-//   !!!IMPORTANT!!! 
-//NOTE THAT THE MAP IS *MIRRORED* SOUTH! 
-//THAT IS, ON SCREEN IT WILL APPEAR AS SO: 
-//UP IS SOUTH AND DOWN IS NORTH, BUT RIGHT IS STILL EAST AND LEFT IS STILL WEST.
-//========================
-let grid = [
-  [rover,"","","","","","","","","O"],
-  ["","O","","","","O","","","",""],
-  ["","","","","","","","","",""],
-  ["O","","","","","","","","",""],
-  ["","","","","O","","","","",""],
-  ["","","","","","","","","",""],
-  ["","","","","","","","","",""],
-  ["","","","","","","","","",""],
-  ["","O","O","","","","","","",""],
-  ["","","","","","","","","",""]
-]
